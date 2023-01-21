@@ -14,6 +14,7 @@ class SiteUserController {
         this.repository = repository;
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/users")
     List<SiteUser> allSiteUsers() {
         return repository.findAll();
