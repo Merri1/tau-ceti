@@ -26,7 +26,12 @@ class SiteUserController {
     }
 
     @DeleteMapping("/users/delete-all")
-    void deleteSiteUser() {
+    void deleteAllSiteUsers() {
         repository.deleteAll();
+    }
+
+    @DeleteMapping("/users/delete-user")
+    void deleteSiteUser(@RequestBody SiteUser siteUser) {
+        repository.delete(siteUser);
     }
 }
