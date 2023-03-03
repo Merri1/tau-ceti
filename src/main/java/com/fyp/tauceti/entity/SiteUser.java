@@ -1,21 +1,35 @@
 package com.fyp.tauceti.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
+@Table(name = "SITE_USER")
 public class SiteUser {
     @Id
     @GeneratedValue
+    @Column(name = "ID", nullable = false)
     private Long id;
+
+    @Column(name = "FIRST_NAME", nullable = false)
     private String firstName;
+
+    @Column(name = "LAST_NAME", nullable = false)
     private String lastName;
+
+    @Column(name = "EMAIL", nullable = false)
     private String email;
+
+    @Column(name = "K_NUMBER")
     private String kNumber;
+
+    @Column(name = "REGISTRATION_DATE", nullable = false)
     private LocalDateTime registrationDate;
+
+    @OneToMany(mappedBy = "siteUser", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Game> game;
 
     public SiteUser() {}
 
