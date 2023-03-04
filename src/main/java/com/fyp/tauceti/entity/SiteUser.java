@@ -38,6 +38,9 @@ public class SiteUser {
     @OneToMany(mappedBy = "siteUser", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Game> game;
 
+    @OneToMany(mappedBy = "siteUser", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<LoginRecord> loginRecord;
+
     public SiteUser() {
     }
 
