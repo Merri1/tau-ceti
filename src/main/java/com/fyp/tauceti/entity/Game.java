@@ -1,25 +1,20 @@
 package com.fyp.tauceti.entity;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import org.hibernate.annotations.GenericGenerator;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Table(name = "GAME")
 public class Game {
     @Id
-    @GeneratedValue
+    @GeneratedValue(generator = "uuid2")
+    @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
     @Column(name = "ID")
-    private Long id;
+    private UUID id;
 
     @Column(name = "NAME")
     private String name;
@@ -37,8 +32,10 @@ public class Game {
     @OneToOne(mappedBy = "game", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private GameStat gameStat;
 
-    public Game() {
-    }
+    @OneToMany(mappedBy = "game", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<PlayerStat> playerStat;
+
+    public Game() { }
 
     public Game(String name, String genre, LocalDateTime registrationDate, SiteUser siteUser) {
         this.name = name;
@@ -47,11 +44,11 @@ public class Game {
         this.siteUser = siteUser;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
@@ -71,11 +68,11 @@ public class Game {
         this.siteUser = siteUser;
     }
 
-    public String getgenre() {
+    public String getGenre() {
         return genre;
     }
 
-    public void setgenre(String genre) {
+    public void setGenre(String genre) {
         this.genre = genre;
     }
 

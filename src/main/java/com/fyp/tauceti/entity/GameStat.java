@@ -1,19 +1,12 @@
 package com.fyp.tauceti.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Table;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "GAME_STAT")
 public class GameStat {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private Long id;
 
@@ -24,7 +17,7 @@ public class GameStat {
     private long lossCount;
 
     @Column(name = "TOTAL_PLAYTIME")
-    private Long totalplaytime;
+    private Long totalPlayTime;
 
     @Column(name = "TOTAL_SESSIONS")
     private Long totalSessions;
@@ -42,7 +35,7 @@ public class GameStat {
     public GameStat(Long winCount, long lossCount, Long totalplaytime, Long totalSessions, Long totalPlayerCount, Game game) {
         this.winCount = winCount;
         this.lossCount = lossCount;
-        this.totalplaytime = totalplaytime;
+        this.totalPlayTime = totalplaytime;
         this.totalSessions = totalSessions;
         this.totalPlayerCount = totalPlayerCount;
         this.game = game;
@@ -72,12 +65,12 @@ public class GameStat {
         this.lossCount = lossCount;
     }
 
-    public Long getTotalplaytime() {
-        return totalplaytime;
+    public Long getTotalPlayTime() {
+        return totalPlayTime;
     }
 
-    public void setTotalplaytime(Long totalplaytime) {
-        this.totalplaytime = totalplaytime;
+    public void setTotalPlayTime(Long totalPlayTime) {
+        this.totalPlayTime = totalPlayTime;
     }
 
     public Long getTotalSessions() {
@@ -110,7 +103,7 @@ public class GameStat {
                 "id=" + id +
                 ", winCount=" + winCount +
                 ", lossCount=" + lossCount +
-                ", totalplaytime=" + totalplaytime +
+                ", totalplaytime=" + totalPlayTime +
                 ", totalSessions=" + totalSessions +
                 ", totalPlayerCount=" + totalPlayerCount +
                 ", game=" + game +

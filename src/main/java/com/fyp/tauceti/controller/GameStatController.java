@@ -2,9 +2,7 @@ package com.fyp.tauceti.controller;
 
 import com.fyp.tauceti.entity.GameStat;
 import com.fyp.tauceti.repository.GameStatRepository;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,5 +18,10 @@ public class GameStatController {
     @GetMapping("/game-stats")
     List<GameStat> allGameStats() {
         return repository.findAll();
+    }
+
+    @PostMapping("/game-stats-new")
+    GameStat newGameStat(@RequestBody GameStat newGameStat) {
+        return repository.save(newGameStat);
     }
 }
