@@ -14,7 +14,7 @@ public class GameStat {
     private Long winCount;
 
     @Column(name = "LOSS_COUNT")
-    private long lossCount;
+    private Long lossCount;
 
     @Column(name = "TOTAL_PLAYTIME")
     private Long totalPlayTime;
@@ -32,7 +32,7 @@ public class GameStat {
     public GameStat() {
     }
 
-    public GameStat(Long winCount, long lossCount, Long totalplaytime, Long totalSessions, Long totalPlayerCount, Game game) {
+    public GameStat(Long winCount, Long lossCount, Long totalplaytime, Long totalSessions, Long totalPlayerCount, Game game) {
         this.winCount = winCount;
         this.lossCount = lossCount;
         this.totalPlayTime = totalplaytime;
@@ -57,7 +57,7 @@ public class GameStat {
         this.winCount = winCount;
     }
 
-    public long getLossCount() {
+    public Long getLossCount() {
         return lossCount;
     }
 

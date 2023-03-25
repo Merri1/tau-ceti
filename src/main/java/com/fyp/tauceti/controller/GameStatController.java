@@ -20,8 +20,6 @@ public class GameStatController {
         return repository.findAll();
     }
 
-    @PostMapping("/game-stats-new")
-    GameStat newGameStat(@RequestBody GameStat newGameStat) {
-        return repository.save(newGameStat);
-    }
+    @PostMapping("/game-stats/update")
+    GameStat newGameStat(@RequestBody GameStat newGameStat) { return repository.save(newGameStat); }
 }
