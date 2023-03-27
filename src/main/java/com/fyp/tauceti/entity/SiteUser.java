@@ -26,8 +26,11 @@ public class SiteUser {
     @Column(name = "LAST_NAME", nullable = false)
     private String lastName;
 
-    @Column(name = "EMAIL", nullable = false)
+    @Column(name = "EMAIL", nullable = false, unique = true)
     private String email;
+
+    @Column(name = "PASSWORD", nullable = false)
+    private String password;
 
     @Column(name = "K_NUMBER")
     private String kNumber;
@@ -44,10 +47,11 @@ public class SiteUser {
     public SiteUser() {
     }
 
-    public SiteUser(String firstName, String lastName, String email, String kNumber, LocalDateTime registrationDate) {
+    public SiteUser(String firstName, String lastName, String email, String password, String kNumber, LocalDateTime registrationDate) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.password = password;
         this.kNumber = kNumber;
         this.registrationDate = registrationDate;
     }
@@ -83,6 +87,10 @@ public class SiteUser {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public String getPassword() { return password; }
+
+    public void setPassword(String password) { this.password = password; }
 
     public String getKNumber() {
         return kNumber;

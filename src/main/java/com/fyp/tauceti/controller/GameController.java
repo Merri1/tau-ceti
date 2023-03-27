@@ -4,6 +4,7 @@ import com.fyp.tauceti.entity.Game;
 import com.fyp.tauceti.repository.GameRepository;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -20,8 +21,10 @@ class GameController {
         return repository.findAll();
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/games/new")
     Game newGame(@RequestBody Game newGame) {
+        newGame.setRegistrationDate(LocalDateTime.now());
         return repository.save(newGame);
     }
 
