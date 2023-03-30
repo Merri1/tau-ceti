@@ -2,6 +2,8 @@ package com.fyp.tauceti.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "PLAYER")
 public class Player {
@@ -13,8 +15,8 @@ public class Player {
     @Column(name = "DISPLAY_NAME")
     private String displayName;
 
-    @OneToOne(mappedBy = "player", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private PlayerStat playerStat;
+    @OneToMany(mappedBy = "player", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<PlayerStat> playerStat;
 
     public Player() { }
 
@@ -22,6 +24,10 @@ public class Player {
         this.id = id;
         this.displayName = displayName;
     }
+
+    public Long getId() { return id; }
+
+    public void setId(Long id) { this.id = id; }
 
     public String getDisplayName() {
         return displayName;

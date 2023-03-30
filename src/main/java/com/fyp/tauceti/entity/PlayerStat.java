@@ -14,9 +14,6 @@ public class PlayerStat {
     @JoinColumn(name = "GAME_ID", nullable = false)
     private Game game;
 
-    @Column(name = "DISPLAY_NAME", nullable = false)
-    private String displayName;
-
     @Column(name = "PLAYER_KILLS")
     private Long killCount;
 
@@ -32,14 +29,14 @@ public class PlayerStat {
     @Column(name = "TOTAL_SESSIONS")
     private Long totalSessions;
 
-    @OneToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "PLAYER_ID", nullable = false)
     private Player player;
 
     public PlayerStat() { }
-    public PlayerStat(Game game, String displayName, Long killCount, Long deathCount, Long totalScore, Long totalPlayTime, Long totalSessions) {
+
+    public PlayerStat(Game game, Long killCount, Long deathCount, Long totalScore, Long totalPlayTime, Long totalSessions) {
         this.game = game;
-        this.displayName = displayName;
         this.killCount = killCount;
         this.deathCount = deathCount;
         this.totalScore = totalScore;
@@ -47,20 +44,16 @@ public class PlayerStat {
         this.totalSessions = totalSessions;
     }
 
+    public Long getId() { return id; }
+
+    public void setId(Long id) { this.id = id; }
+
     public Game getGame() {
         return game;
     }
 
     public void setGame(Game game) {
         this.game = game;
-    }
-
-    public String getDisplayName() {
-        return displayName;
-    }
-
-    public void setDisplayName(String displayName) {
-        this.displayName = displayName;
     }
 
     public Long getKillCount() {
@@ -112,7 +105,6 @@ public class PlayerStat {
         return "PlayerStat{" +
                 "id=" + id +
                 ", game=" + game +
-                ", displayName='" + displayName + '\'' +
                 ", killCount=" + killCount +
                 ", deathCount=" + deathCount +
                 ", totalScore=" + totalScore +
