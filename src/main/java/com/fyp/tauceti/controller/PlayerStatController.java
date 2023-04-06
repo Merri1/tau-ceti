@@ -36,11 +36,12 @@ public class PlayerStatController {
         Game existingGame = gameRepository.findById(gameId);
         PlayerStat existingPlayerStat = repository.findPlayerStatByGameAndPlayerDisplayName(existingGame, playerTag);
 
-        // if player stat exists for that playerTag return it, else return a new blank player stat record
+        // if player stat exists for that playerTag return it
         if(existingPlayerStat != null) {
             return existingPlayerStat;
         }
         else {
+            // else return a new blank player stat record
             PlayerStat newPlayerStat = new PlayerStat();
             newPlayerStat.setId(0L);
             newPlayerStat.setKillCount(0L);
