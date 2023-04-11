@@ -12,6 +12,9 @@ import jakarta.persistence.Table;
 import java.time.LocalDateTime;
 import java.util.List;
 
+/**
+ * The SiteUser entity maps to the SITE_USER database table
+ */
 @Entity
 @Table(name = "SITE_USER")
 public class SiteUser {

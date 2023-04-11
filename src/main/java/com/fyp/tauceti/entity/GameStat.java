@@ -2,6 +2,9 @@ package com.fyp.tauceti.entity;
 
 import jakarta.persistence.*;
 
+/**
+ * The GameStat entity maps to the GAME_STAT database table
+ */
 @Entity
 @Table(name = "GAME_STAT")
 public class GameStat {

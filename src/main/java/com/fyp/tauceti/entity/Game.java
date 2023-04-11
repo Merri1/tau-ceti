@@ -7,6 +7,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * The Game entity maps to the GAME database table
+ */
 @Entity
 @Table(name = "GAME")
 public class Game {

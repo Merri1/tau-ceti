@@ -11,6 +11,9 @@ import jakarta.persistence.Table;
 
 import java.time.LocalDateTime;
 
+/**
+ * The LoginRecord entity maps to the LOGIN_RECORD database table
+ */
 @Entity
 @Table(name = "LOGIN_RECORD")
 public class LoginRecord {

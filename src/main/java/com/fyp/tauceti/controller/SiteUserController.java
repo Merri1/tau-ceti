@@ -9,20 +9,36 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.time.LocalDateTime;
 
+/**
+ * Spring Controller for interacting with the SITE_USER database table through web APIs
+ * @see com.fyp.tauceti.repository.SiteUserRepository
+ * @see com.fyp.tauceti.repository.LoginRecordRepository
+ * @see org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
+ */
 @RestController
-class SiteUserController {
+public class SiteUserController {
     private final SiteUserRepository repository;
-    private final BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
     private final LoginRecordRepository loginRecordRepository;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
-    SiteUserController(SiteUserRepository repository, LoginRecordRepository loginRecordRepository) {
+    /**
+     * Paramterised Constructor
+     * @param repository SiteUserRepository object for CRUD operations on SITE_USER database table
+     * @param loginRecordRepository LoginRecordRepository object for CRUD operations on LOGIN_RECORD database table
+     */
+    public SiteUserController(SiteUserRepository repository, LoginRecordRepository loginRecordRepository) {
         this.repository = repository;
         this.loginRecordRepository = loginRecordRepository;
     }
 
+    /**
+     * "new-user" endpoint: Accepts POST requests containing a new SiteUser details
+     * @param newSiteUser New SiteUser to be added to the database
+     * @return The saved SiteUser
+     */
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/new-user")
-    SiteUser newSiteUser(@RequestBody SiteUser newSiteUser) {
+    public SiteUser newSiteUser(@RequestBody SiteUser newSiteUser) {
         // Search for record with new email to see if it already exists
         SiteUser siteUser = repository.findSiteUserByEmail(newSiteUser.getEmail());
 
@@ -34,13 +50,19 @@ class SiteUserController {
             return repository.save(newSiteUser);
         }
         else {
+            // Else return a blank new SiteUser
             return new SiteUser();
         }
     }
 
+    /**
+     * "/login" endpoint: Accepts POST request when a user tries to login to the site
+     * @param loginSiteUser The details of the SiteUser logging in
+     * @return SiteUser record if login is valid, else a blank SiteUser record
+     */
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/login")
-    SiteUser loginSiteUser(@RequestBody SiteUser loginSiteUser) {
+    public SiteUser loginSiteUser(@RequestBody SiteUser loginSiteUser) {
         // Return site user with matching email as login
         SiteUser existingUser = repository.findSiteUserByEmail(loginSiteUser.getEmail());
 
@@ -63,8 +85,12 @@ class SiteUserController {
         return new SiteUser();
     }
 
+    /**
+     * "/users/delete-user" endpoint: Accepts DELETE requests for deleting a SiteUser record from the database
+     * @param siteUser the SiteUser to be deleted
+     */
     @DeleteMapping("/users/delete-user")
-    void deleteSiteUser(@RequestBody SiteUser siteUser) {
+    public void deleteSiteUser(@RequestBody SiteUser siteUser) {
         // Not implemented yet in the frontend but this would delete a user from the database
         repository.delete(siteUser);
     }
