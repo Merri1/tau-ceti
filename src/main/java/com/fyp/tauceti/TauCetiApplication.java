@@ -2,36 +2,21 @@ package com.fyp.tauceti;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 
-
-@SpringBootApplication
+/**
+ * Spring Boot application main class
+ */
+@SpringBootApplication(exclude = { SecurityAutoConfiguration.class })
 public class TauCetiApplication {
+    /**
+     * Starts the Spring ApplicationContext
+     * @see org.springframework.context.ApplicationContext
+     * @param args
+     */
     public static void main(String[] args) {
         SpringApplication.run(TauCetiApplication.class, args);
     }
-
-//    private void insertFourSiteUsers(SiteUserRepository repository) {
-//        repository.save(new SiteUser("Jim", "Holden", "jim@mail.com", "K12345678", LocalDateTime.now()));
-//        repository.save(new SiteUser("Naomi", "Nagata", "naomi@email.org", "K87654321", LocalDateTime.now()));
-//        repository.save(new SiteUser("Amos", "Burton", "aburton@webmail.mars", "K1122334455", LocalDateTime.now()));
-//        repository.save(new SiteUser("Julie", "Mao", "julie.mao@mao.com", "K44332211", LocalDateTime.now()));
-//    }
-
-//    @Bean
-//    public CommandLineRunner run(SiteUserRepository repository) {
-//        return (args) -> {
-//            insertFourSiteUsers(repository);
-//            System.out.println(repository.findAll());
-//        };
-//    }
-
-//    @Bean
-//    public CommandLineRunner run(SiteUserRepository repository) {
-//        return (args) -> {
-//            insertFourSiteUsers(repository);
-//            System.out.println(repository.findSiteUsersByLastNameContaining(" "));
-//        };
-//    }
 }
 
 
