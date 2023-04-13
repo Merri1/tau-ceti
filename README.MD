@@ -3,7 +3,7 @@
 ### Introduction
 Tau-Ceti is a Java Spring web application backend for the [Hyperion Angular frontend application](https://github.com/Merri1/hyperion).
 <br><br>
-Tau-ceti is one of three modules of my fourth year Final Year Project while studying Games Design and Development at TUS Thurles.
+Tau-ceti is one of three modules of my fourth year Final Year Project that I developed while studying Games Design and Development at TUS Thurles.
 <br><br>
 Details, documentation and git repo links to the other modules can be found [on my website](https://merri1.github.io).
 
